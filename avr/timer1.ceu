@@ -1,5 +1,3 @@
-#ifndef CEU_WCLOCK_IMPL
-
 #define CEU_WCLOCK_IRQ_N        _TIMER1_OVF_vect
 #define CEU_PM_WCLOCK           CEU_PM_TIMER1
 #define CEU_WCLOCK_PRESCALER    1024
@@ -9,9 +7,11 @@
 #define ceu_timer1_done         ceu_wclock_done
 #define ceu_timer1_dt           ceu_wclock_dt
 
-#include "../../wclock.ceu"
+#include "../wclock.ceu"
 
-#endif
+{
+    ceu_wclock_init();
+}
 
 native/pos do
     static u16 ceu_timer1_old;
