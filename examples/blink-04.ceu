@@ -1,0 +1,22 @@
+#include "timer1.ceu"
+
+output on/off PIN_11;
+output on/off PIN_12;
+output on/off PIN_13;
+
+output (int,on/off) PIN;
+
+code/await Blink (var int pin, var int ms) -> NEVER do
+    loop do
+        emit PIN(pin,on);
+        await (ms)ms;
+        emit PIN(pin,off);
+        await (ms)ms;
+    end
+end
+
+spawn Blink(11, 1000);
+spawn Blink(12,  500);
+spawn Blink(13,  250);
+
+await FOREVER;
