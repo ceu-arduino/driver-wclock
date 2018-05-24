@@ -1,2 +1,2 @@
 # driver-wclock
-Driver - WCLOCK - Generic
+Driver - WCLOCK
