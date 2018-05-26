@@ -1,16 +1,15 @@
+#include "gpio.ceu"
 #include "wclock.ceu"
 
 output on/off PIN_11;
 output on/off PIN_12;
 output on/off PIN_13;
 
-output (int,on/off) PIN;
-
 code/await Blink (var int pin, var int ms) -> NEVER do
     loop do
-        emit PIN(pin,on);
+        emit PIN_OUT(pin,on);
         await (ms)ms;
-        emit PIN(pin,off);
+        emit PIN_OUT(pin,off);
         await (ms)ms;
     end
 end

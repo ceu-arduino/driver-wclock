@@ -10,6 +10,8 @@
 #define ceu_timer1_done         ceu_wclock_done
 #define ceu_timer1_dt           ceu_wclock_dt
 
+native/const _TIMER1_OVF_vect;
+
 #include "../wclock.ceu"
 
 {
