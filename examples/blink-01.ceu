@@ -1,7 +1,7 @@
 #include "gpio.ceu"
 #include "wclock.ceu"
 
-output on/off PIN_13;
+output high/low PIN_13;
 
 loop do
     emit PIN_13(on);
