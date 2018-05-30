@@ -14,10 +14,6 @@ native/const _TIMER1_OVF_vect;
 
 #include "../wclock.ceu"
 
-{
-    ceu_wclock_init();
-}
-
 native/pos do
     static u16 ceu_timer1_old;
 
