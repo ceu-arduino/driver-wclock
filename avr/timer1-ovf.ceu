@@ -9,6 +9,7 @@
 #define ceu_timer1_request      ceu_wclock_request
 #define ceu_timer1_done         ceu_wclock_done
 #define ceu_timer1_dt           ceu_wclock_dt
+#define ceu_timer1_now          ceu_wclock_now
 
 native/const _TIMER1_OVF_vect;
 
@@ -60,6 +61,10 @@ native/pos do
         s32 dt  = (u16)(now - ceu_timer1_old);
         ceu_timer1_old = now;
         return CEU_WCLOCK_INCS_TO_US(dt);
+    }
+
+    u32 ceu_wclock_now (void) {
+        return CEU_WCLOCK_INCS_TO_US(TCNT1);
     }
 end
 

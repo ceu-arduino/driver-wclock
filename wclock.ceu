@@ -4,6 +4,14 @@
 
 // Language wall-clock timer (e.g., `await 1s`)
 
+output (&u32 us) WCLOCK_NOW do
+    us = { ceu_wclock_now() };
+end
+
+output (u32 us) WCLOCK_FREEZE do
+    _delayMicroseconds(us);
+end
+
 ///////////////////////////////////////////////////////////////////////////////
 // INTERNAL INTERFACE
 ///////////////////////////////////////////////////////////////////////////////
@@ -23,6 +31,7 @@ native/pre do
     void ceu_wclock_request (s32 us, bool was_active);
     void ceu_wclock_done    (void);
     s32  ceu_wclock_dt      (void);
+    u32  ceu_wclock_now     (void);
 end
 
 ///////////////////////////////////////////////////////////////////////////////
