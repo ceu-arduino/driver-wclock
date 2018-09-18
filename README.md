@@ -25,7 +25,7 @@ Parameters:
 
 - `&u32`: reference to write the value
 
-*NOTE: Only works if a time await is active.*
+*NOTE: Only works if a time unit await is active.*
 
 *NOTE: The number overflows around every 4 seconds.*
 
