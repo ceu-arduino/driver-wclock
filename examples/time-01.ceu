@@ -4,11 +4,10 @@
 
 loop do
     await 1s;
-    var u32 us = _;
-    emit WCLOCK_NOW(&us);
+    var u32 us = call WCLOCK_Now();
     {
         Serial.print("MS ");
         Serial.println(@us/1000);
     }
-    emit WCLOCK_FREEZE(10000);
+    call WCLOCK_Freeze(10000);
 end

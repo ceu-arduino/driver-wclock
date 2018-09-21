@@ -11,36 +11,6 @@ Control the passage of time from the real world measured in *seconds*,
 #include "wclock.ceu"
 ```
 
-### Output
-
-#### WCLOCK_NOW
-
-Gets the number of elapsed microseconds since the board reset.
-
-```
-output &u32 WCLOCK_NOW;
-```
-
-Parameters:
-
-- `&u32`: reference to write the value
-
-*NOTE: Only works if a time unit await is active.*
-
-*NOTE: The number overflows around every 4 seconds.*
-
-### WCLOCK_FREEZE
-
-Freezes the whole program for a given number of microseconds.
-
-```
-output u32 WCLOCK_FREEZE;
-```
-
-Parameters:
-
-- `u32`: number of milliseconds
-
 ### Input
 
 #### Time units
@@ -49,6 +19,46 @@ Awaits for units of time: `s`, `ms`, `us`.
 
 See also:
     - https://ceu-lang.github.io/ceu/out/manual/v0.30/statements/#timer
+
+*NOTE: The maximum amount of time is around 4 seconds.*
+
+### Code Abstractions
+
+#### WCLOCK_Now
+
+Gets the number of elapsed microseconds since the board reset.
+
+```
+code/call WCLOCK_Now (none) -> u32;
+```
+
+Parameters:
+
+- `none`
+
+Return:
+
+- `u32`: number of microseconds
+
+*NOTE: Only works if a time unit await is active.*
+
+*NOTE: The number overflows around every 4 seconds.*
+
+### WCLOCK_Freeze
+
+Freezes the whole program for a given number of microseconds.
+
+```
+code/call WCLOCK_Freeze (var u32 us) -> none do
+```
+
+Parameters:
+
+- `u32`: number of milliseconds
+
+Return:
+
+- `none`
 
 ## Examples
 
@@ -81,12 +91,11 @@ Print current time on every second:
 
 loop do
     await 1s;
-    var u32 us = _;
-    emit WCLOCK_NOW(&us);
+    var u32 us = call WCLOCK_NOW();
     {
         Serial.print("MS ");
         Serial.println(@us/1000);
     }
-    emit WCLOCK_FREEZE(10000);
+    emit WCLOCK_Freeze(10000);
 end
 ```

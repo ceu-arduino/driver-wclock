@@ -4,11 +4,11 @@
 
 // Language wall-clock timer (e.g., `await 1s`)
 
-output (&u32 us) WCLOCK_NOW do
-    us = { ceu_wclock_now() };
+code/call WCLOCK_Now (none) -> u32 do
+    escape { ceu_wclock_now() };
 end
 
-output (u32 us) WCLOCK_FREEZE do
+code/call WCLOCK_Freeze (var u32 us) -> none do
     _delayMicroseconds(us);
 end
 
