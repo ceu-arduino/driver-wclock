@@ -91,11 +91,11 @@ Print current time on every second:
 
 loop do
     await 1s;
-    var u32 us = call WCLOCK_NOW();
+    var u32 us = call WCLOCK_Now();
     {
         Serial.print("MS ");
         Serial.println(@us/1000);
     }
-    emit WCLOCK_Freeze(10000);
+    call WCLOCK_Freeze(10000);
 end
 ```
