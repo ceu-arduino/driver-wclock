@@ -54,7 +54,7 @@ code/call WCLOCK_Freeze (var u32 us) -> none do
 
 Parameters:
 
-- `u32`: number of milliseconds
+- `u32`: number of microseconds
 
 Return:
 
